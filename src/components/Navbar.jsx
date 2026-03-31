@@ -71,19 +71,19 @@ const Navbar = ({
               <NextLink href="/" title="Home" className="nav-link" />
             </li>
             <li className="nav-item" data-bs-dismiss="offcanvas">
-              <NextLink href="#" title="About Us" className="nav-link" />
+              <NextLink href="/about-us" title="About Us" className="nav-link" />
             </li>
             <li className="nav-item dropdown">
               <DropdownToggleLink
                 title="Services"
-                href="#"
+                href="/services"
                 className="nav-link dropdown-toggle"
               />
               <ul className="dropdown-menu" data-bs-dismiss="offcanvas">
                 {services.map(({ id, title }) => (
                   <ListItemLink
                     key={id}
-                    href="#"
+                    href={`/services/${id}`}
                     title={title}
                     linkClassName="dropdown-item"
                   />
@@ -91,10 +91,10 @@ const Navbar = ({
               </ul>
             </li>
             <li className="nav-item" data-bs-dismiss="offcanvas">
-              <NextLink href="#" title="Gallery" className="nav-link" />
+              <NextLink href="/gallery" title="Gallery" className="nav-link" />
             </li>
             <li className="nav-item" data-bs-dismiss="offcanvas">
-              <NextLink href="#" title="Contact Us" className="nav-link" />
+              <NextLink href="/contact-us" title="Contact Us" className="nav-link" />
             </li>
             <li
               className="nav-item align-items-center d-flex mt-2 mt-lg-0 ms-lg-4 merriweather"
@@ -102,7 +102,7 @@ const Navbar = ({
             >
               <NextLink
                 title="Book Appointment"
-                href="#"
+                href="/book-appointment"
                 className="btn btn-sm bg-color text-white mb-lg-1 rounded border-0"
               />
             </li>

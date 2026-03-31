@@ -16,7 +16,6 @@ const Header = () => {
       ref={stickyRef}
       className={`sticky-wrapper${isSticky ? ' is-sticky' : ''}`}
     >
-      <Topbar />
       <Navbar />
     </header>
   );
