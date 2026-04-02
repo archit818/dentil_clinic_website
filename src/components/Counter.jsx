@@ -15,20 +15,29 @@ import Image from 'next/image';
  */
 const Counter = ({ title, number, Img, suffix }) => {
   return (
-    <div className="col-md-6 col-lg-4 px-xl-12">
+    <div className="col-md-6 col-lg-3 px-xl-6">
       <div
         className="d-flex flex-column justify-content-center align-items-center bg-white rounded counter-cards p-5"
         aria-label={`Counter card: ${title}`}
       >
-        <Image
-          src={Img}
-          width={100}
-          height={100}
-          alt={title}
-          priority
-        />
-        <h3 className="fs-30 counter mt-5 text-second" aria-label={`${number}${suffix || ''}`}>
-          <CountUp end={number} suffix={suffix} />
+        <div 
+          className="icon-container rounded-circle p-4 mb-4" 
+          style={{ 
+            background: '#f8f9fa', 
+            backgroundImage: 'radial-gradient(#dee2e6 1px, transparent 1px)', 
+            backgroundSize: '10px 10px' 
+          }}
+        >
+          <Image
+            src={Img}
+            width={80}
+            height={80}
+            alt={title}
+            priority
+          />
+        </div>
+        <h3 className="fs-32 merriweather mt-2 text-primary" aria-label={`${number}${suffix || ''}`}>
+          <CountUp end={number} duration={3} suffix={suffix} />
         </h3>
         <p className="fw-bold fs-18 text-center merriweather">{title}</p>
       </div>

@@ -1,10 +1,66 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import Head from 'next/head';
 import Navbar from 'components/Navbar';
 import Topbar from 'components/Topbar';
 import PageProgress from 'components/PageProgress';
 
 const BookAppointment = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '+91',
+    email: '',
+    location: '',
+    service: '',
+    message: '',
+  });
+
+  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [statusMessage, setStatusMessage] = useState('');
+  const [results, setResults] = useState(null);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    setStatusMessage('');
+    setResults(null);
+
+    try {
+      const response = await fetch('/api/book-appointment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        setStatusMessage(data.message);
+        setResults(data.results);
+        // Reset form
+        setFormData({
+          name: '',
+          phone: '+91',
+          email: '',
+          location: '',
+          service: '',
+          message: '',
+        });
+      } else {
+        setStatus('error');
+        setStatusMessage(data.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setStatus('error');
+      setStatusMessage('Network error. Please check your connection and try again.');
+    }
+  };
+
   return (
     <Fragment>
       <Head>
@@ -34,34 +90,119 @@ const BookAppointment = () => {
               <div className="col-lg-8 p-6 p-md-10">
                 <h2 className="merriweather fs-38 mb-3 text-center">Book An Appointment</h2>
                 <p className="lato fs-18 text-center mb-10 text-muted">Get Rid Of With Any Kind Of Dental Issue Now:</p>
+
+                {/* ── Success Message ── */}
+                {status === 'success' && (
+                  <div className="alert d-flex align-items-start mb-6 p-4 rounded-3" style={{
+                    background: 'linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%)',
+                    border: '1px solid #6ee7b7',
+                  }}>
+                    <div className="me-3 fs-40" style={{ lineHeight: 1 }}>✅</div>
+                    <div>
+                      <h5 className="merriweather mb-2" style={{ color: '#065f46' }}>Appointment Booked Successfully!</h5>
+                      <p className="lato mb-2" style={{ color: '#047857' }}>{statusMessage}</p>
+                      {results && (
+                        <div className="d-flex flex-wrap gap-2 mt-2">
+                          {results.email && (
+                            <span className="badge rounded-pill px-3 py-2" style={{ background: '#059669', color: '#fff' }}>
+                              📧 Confirmation Email Sent
+                            </span>
+                          )}
+                          {results.sms && (
+                            <span className="badge rounded-pill px-3 py-2" style={{ background: '#0891b2', color: '#fff' }}>
+                              📱 SMS Sent
+                            </span>
+                          )}
+                          {results.sheet && (
+                            <span className="badge rounded-pill px-3 py-2" style={{ background: '#7c3aed', color: '#fff' }}>
+                              📋 Record Updated
+                            </span>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {/* ── Error Message ── */}
+                {status === 'error' && (
+                  <div className="alert d-flex align-items-start mb-6 p-4 rounded-3" style={{
+                    background: 'linear-gradient(135deg, #fef2f2 0%, #fecaca 100%)',
+                    border: '1px solid #fca5a5',
+                  }}>
+                    <div className="me-3 fs-40" style={{ lineHeight: 1 }}>❌</div>
+                    <div>
+                      <h5 className="merriweather mb-1" style={{ color: '#991b1b' }}>Something Went Wrong</h5>
+                      <p className="lato mb-0" style={{ color: '#b91c1c' }}>{statusMessage}</p>
+                    </div>
+                  </div>
+                )}
                 
-                <form className="contact-form needs-validation" noValidate>
+                <form className="contact-form needs-validation" noValidate onSubmit={handleSubmit}>
                   <div className="row gx-4">
                     <div className="col-md-6">
                       <div className="form-floating mb-4">
-                        <input required type="text" id="form_name" name="name" placeholder="Full Name" className="form-control" />
+                        <input
+                          required
+                          type="text"
+                          id="form_name"
+                          name="name"
+                          placeholder="Full Name"
+                          className="form-control"
+                          value={formData.name}
+                          onChange={handleChange}
+                          disabled={status === 'loading'}
+                        />
                         <label htmlFor="form_name">Full Name *</label>
                       </div>
                     </div>
                     
                     <div className="col-md-6">
                       <div className="form-floating mb-4">
-                        <input required type="tel" id="form_phone" name="phone" placeholder="Phone Number" className="form-control" defaultValue="+91" />
+                        <input
+                          required
+                          type="tel"
+                          id="form_phone"
+                          name="phone"
+                          placeholder="Phone Number"
+                          className="form-control"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          disabled={status === 'loading'}
+                        />
                         <label htmlFor="form_phone">Phone Number *</label>
                       </div>
                     </div>
 
                     <div className="col-md-6">
                       <div className="form-floating mb-4">
-                        <input required type="email" id="form_email" name="email" placeholder="Email Address" className="form-control" />
+                        <input
+                          required
+                          type="email"
+                          id="form_email"
+                          name="email"
+                          placeholder="Email Address"
+                          className="form-control"
+                          value={formData.email}
+                          onChange={handleChange}
+                          disabled={status === 'loading'}
+                        />
                         <label htmlFor="form_email">Email Address *</label>
                       </div>
                     </div>
 
                     <div className="col-md-6">
                       <div className="form-floating mb-4">
-                        <select required className="form-select" id="form_location" name="location">
-                          <option value="" disabled selected>Choose Hospital Location</option>
+                        <select
+                          required
+                          className="form-select"
+                          id="form_location"
+                          name="location"
+                          value={formData.location}
+                          onChange={handleChange}
+                          disabled={status === 'loading'}
+                        >
+                          <option value="" disabled>Choose Hospital Location</option>
                           <option value="Location 1">Location 1</option>
                           <option value="Location 2">Location 2</option>
                         </select>
@@ -71,15 +212,23 @@ const BookAppointment = () => {
 
                     <div className="col-12">
                       <div className="form-floating mb-4">
-                        <select required className="form-select" id="form_service" name="service">
-                          <option value="" disabled selected>Choose Required Service</option>
+                        <select
+                          required
+                          className="form-select"
+                          id="form_service"
+                          name="service"
+                          value={formData.service}
+                          onChange={handleChange}
+                          disabled={status === 'loading'}
+                        >
+                          <option value="" disabled>Choose Required Service</option>
                           <option value="Dental Implants">Dental Implants</option>
                           <option value="Root Canal Treatment">Root Canal Treatment</option>
                           <option value="Cavity Filling">Cavity Filling</option>
                           <option value="Orthodontics">Orthodontics</option>
                           <option value="Teeth Whitening">Teeth Whitening</option>
                           <option value="Wisdom Tooth Surgery">Wisdom Tooth Surgery</option>
-                          <option value="Crown & Bridges">Crown & Bridges</option>
+                          <option value="Crown &amp; Bridges">Crown &amp; Bridges</option>
                           <option value="Pediatric Dentistry">Pediatric Dentistry</option>
                           <option value="Other">Other</option>
                         </select>
@@ -89,14 +238,36 @@ const BookAppointment = () => {
 
                     <div className="col-12">
                       <div className="form-floating mb-4">
-                        <textarea required id="form_message" name="message" placeholder="Message" className="form-control" style={{ height: '150px' }}></textarea>
+                        <textarea
+                          required
+                          id="form_message"
+                          name="message"
+                          placeholder="Message"
+                          className="form-control"
+                          style={{ height: '150px' }}
+                          value={formData.message}
+                          onChange={handleChange}
+                          disabled={status === 'loading'}
+                        ></textarea>
                         <label htmlFor="form_message">Message *</label>
                       </div>
                     </div>
 
                     <div className="col-12 text-center merriweather">
-                      <button type="submit" className="btn bg-theme-dark text-white px-10 py-3 rounded-pill">
-                        Send Message
+                      <button
+                        type="submit"
+                        className="btn bg-theme-dark text-white px-10 py-3 rounded-pill d-inline-flex align-items-center gap-2"
+                        disabled={status === 'loading'}
+                        id="submit-appointment-btn"
+                      >
+                        {status === 'loading' ? (
+                          <>
+                            <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Booking Appointment...
+                          </>
+                        ) : (
+                          'Book Appointment'
+                        )}
                       </button>
                       <p className="text-muted fs-14 mt-4 lato">* These fields are required.</p>
                     </div>

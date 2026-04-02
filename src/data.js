@@ -1,13 +1,13 @@
 // ===================== Services =====================
 export const services = [
-  { id: 1, title: 'Dental Implants' },
-  { id: 2, title: 'Root Canal Treatment' },
-  { id: 3, title: 'Cavity Filling' },
-  { id: 4, title: 'Orthodontics' },
-  { id: 5, title: 'Teeth Whitening' },
-  { id: 6, title: 'Wisdom Tooth Surgery' },
-  { id: 7, title: 'Crown & Bridges' },
-  { id: 8, title: 'Pediatric Dentistry' }
+  { id: 1, title: 'Dental Implants', slug: 'dental-implants-clinic-location' },
+  { id: 2, title: 'Root Canal Treatment', slug: 'root-canal-treatment-location' },
+  { id: 3, title: 'Cavity Filling', slug: 'cavity-filling-treatment-location' },
+  { id: 4, title: 'Orthodontics', slug: 'orthodontics-treatment-location' },
+  { id: 5, title: 'Teeth Whitening', slug: 'teeth-whitening-treatment-location' },
+  { id: 6, title: 'Wisdom Tooth Surgery', slug: 'wisdom-tooth-surgery-location' },
+  { id: 7, title: 'Crown & Bridges', slug: 'crown-and-bridges-treatment-location' },
+  { id: 8, title: 'Pediatric Dentistry', slug: 'pediatric-dentistry-location' }
 ];
 
 // ===================== Useful Links =====================
