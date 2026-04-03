@@ -167,7 +167,7 @@ const RootCanalTreatment = () => {
         <section className="wrapper bg-white">
           <div className="container py-14 py-md-16">
             <div className="heading text-center mb-12 d-flex flex-column align-items-center">
-              <div className="d-flex align-items-center justify-content-center mb-3" style={{ width: '551px' }}>
+              <div className="d-flex align-items-center justify-content-center mb-3" style={{ width: '100%', maxWidth: '551px' }}>
                 <div style={{ flex: '1', height: '2px', backgroundColor: '#B3E5FC', marginRight: '12px' }}></div>
                 <h3 className="fs-18 fw-bold text-primary merriweather mb-0">Why Choose</h3>
                 <div style={{ flex: '1', height: '2px', backgroundColor: '#B3E5FC', marginLeft: '12px' }}></div>

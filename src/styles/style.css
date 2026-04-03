@@ -28,7 +28,7 @@
 .facts {
   background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)),
     url('/img/facts-bg.webp') center/cover no-repeat;
-  background-attachment: fixed; /* For a nice parallax effect */
+  background-attachment: fixed;
 }
 
 /* Text Colors */
@@ -195,206 +195,12 @@ section h2 {
 
 .topbar {
   display: block;
-  font-family: 'Merriweather', serif;
-  font-weight: 600;
-  font-style: normal;
-}
-
-.lato {
-  font-family: 'Lato', sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-/* Background Colors */
-.bg-color {
-  background: linear-gradient(90deg, rgb(0, 51, 102) 0%, rgb(179, 229, 252) 100%) !important;
-}
-
-.bg-theme-dark {
-  background-color: #003366 !important;
-  color: #fff !important;
-}
-
-.bg-grays {
-  background-color: #e0e7ef !important;
-}
-
-.facts {
-  background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)),
-    url('/img/facts-bg.webp') center/cover no-repeat;
-  background-attachment: fixed; /* For a nice parallax effect */
-}
-
-/* Text Colors */
-.text-main {
-  color: #b3e5fc !important;
-}
-
-.text-second {
-  color: #003366 !important;
-}
-
-.text-title {
-  color: #003366 !important;
-}
-
-.text-justify {
-  text-align: justify !important;
-}
-
-/* Headings */
-section h2 {
-  font-weight: bold;
-  font-size: 44px;
-  line-height: 44px;
-  letter-spacing: 0;
-  color: #003366;
-}
-
-/* Link Hover Styling */
-.link h3:hover {
-  color: #003366 !important;
-}
-
-.mail a {
-  color: rgb(85, 79, 79) !important;
-}
-
-.mail a:hover {
-  color: rgb(61, 61, 202) !important;
-}
-
-.widget-title {
-  color: white;
-}
-
-.widget ul li a:hover {
-  text-decoration: underline !important;
-  color: white !important;
-}
-
-/* Hero Section */
-.hero {
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url('/img/hero-bg.webp') center/cover no-repeat;
-  height: 100vh;
-  min-height: 600px;
-  background-attachment: fixed;
-}
-
-.hero h1,
-.hero h3,
-.hero p,
-.hero .btn {
-  color: #fff !important;
-}
-
-.hero .btn {
-  border: 2px solid #fff !important;
-}
-
-.hero .btn:hover {
-  background-color: #003366;
-  color: #fff !important;
-  border: 2px solid #003366 !important;
-}
-
-/* Counter Cards */
-.counter-cards {
-  transition: transform 0.3s ease-in-out;
-}
-
-.counter-cards:hover {
-  cursor: pointer;
-  transform: translateY(-10px) !important;
-}
-
-/* Image Swap on Hover */
-.image-container {
-  position: relative;
-  width: 100px;
-  height: 100px;
-}
-
-.default-image,
-.hover-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.hover-image {
-  opacity: 0;
-}
-
-.cards:hover .default-image {
-  opacity: 0;
-}
-
-.cards:hover .hover-image {
-  opacity: 1;
-}
-
-/* Navigation Styles */
-.nav-item .nav-link,
-.dropdown-item {
-  font-family: 'Merriweather', serif;
-  transition: all 0.3s ease;
-}
-
-.nav-link:hover {
-  color: #343f52 !important;
-  padding-left: 0rem !important;
-  padding-right: 0rem !important;
-  padding-bottom: 0.1rem !important;
-  border-bottom: 3px solid #003366;
-  margin-left: var(--bs-navbar-nav-link-padding-x);
-  margin-right: var(--bs-navbar-nav-link-padding-x);
-}
-
-.navbar-nav .nav-link.active,
-.navbar-nav .nav-link.show,
-.navbar-nav .nav-link:focus,
-.dropdown-item.active {
-  color: #343f52 !important;
-  padding-bottom: 0.1rem !important;
-  border-bottom: 3px solid #003366;
-}
-
-.dropdown-item:hover,
-.dropdown-item:focus {
-  color: #b3e5fc !important;
-}
-
-.navbar-nav .nav-link.show {
-  color: #b3e5fc !important;
-}
-
-/* Sticky Nav */
-.sticky-wrapper {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: white;
-}
-
-.is-sticky .navbar {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.navbar-clone {
-  top: 0px !important;
-}
-
-.topbar {
-  display: block;
 }
 
 .navbar-expand-lg.transparent:not(.fixed) {
   padding-top: 0 !important;
 }
+
 /* Transparent Water Fill Effect */
 .water-container {
   width: 180px;
@@ -412,7 +218,7 @@ section h2 {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(0, 51, 102, 0.4); /* Transparent fill */
+  background: rgba(0, 51, 102, 0.4);
   transition: height 2s ease-in-out;
   z-index: 1;
 }
@@ -426,7 +232,7 @@ section h2 {
   top: 0;
   left: 50%;
   transform: translate(-50%, -90%);
-  background: #fff; /* Still needs a solid wave top for the effect */
+  background: #fff;
 }
 
 .water-fill::before {
@@ -481,16 +287,10 @@ section h2 {
 
 .testimonial-card-xxl {
   min-width: 100%;
-  padding: 5rem !important; /* Increased padding significantly */
+  padding: 5rem !important;
   border: 3px solid rgba(0, 51, 102, 0.1);
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.12) !important;
   border-radius: 2rem !important;
-}
-
-@media (max-width: 768px) {
-  .testimonial-card-xxl {
-    padding: 2.5rem !important;
-  }
 }
 
 .slider-btn-v3 {
@@ -519,16 +319,11 @@ section h2 {
 }
 
 .slider-btn-v3.left {
-  left: -30px; /* Overlapping the edge slightly */
+  left: -30px;
 }
 
 .slider-btn-v3.right {
   right: -30px;
-}
-
-@media (max-width: 991px) {
-  .slider-btn-v3.left { left: 10px; }
-  .slider-btn-v3.right { right: 10px; }
 }
 
 /* Before & After Gallery Comparison */
@@ -642,5 +437,5 @@ section h2 {
 }
 
 .before-effect {
-  filter: saturate(0.3) brightness(0.8) sepia(0.2); /* Mimic 'before' treatment look */
+  filter: saturate(0.3) brightness(0.8) sepia(0.2);
 }
